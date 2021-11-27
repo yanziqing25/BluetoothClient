@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".TopAppBarActivity">
+
+    <item
+        android:id="@+id/toolbar_item_bluetooth"
+        android:contentDescription="蓝牙开关"
+        android:title="蓝牙"
+        app:showAsAction="always" />
+</menu>
