@@ -50,8 +50,8 @@ public class BluetoothDeviceAdapter extends RecyclerView.Adapter<BluetoothDevice
         holder.name.setText(bluetoothDeviceList.getName());
         holder.address.setText(bluetoothDeviceList.getAddress());
         holder.itemView.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onClick(this.mBluetoothDeviceList.get(position));
+            if (this.mListener != null) {
+                this.mListener.onClick(this.mBluetoothDeviceList.get(position));
             }
         });
     }
