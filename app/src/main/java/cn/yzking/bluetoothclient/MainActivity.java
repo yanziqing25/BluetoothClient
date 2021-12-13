@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -17,6 +18,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -58,6 +61,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
+
+        // Android 6.0动态请求权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    , Manifest.permission.READ_EXTERNAL_STORAGE
+                    , Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+            for (String str : permissions) {
+                if (checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(permissions, 111);
+                    break;
+                }
+            }
+        }
 
         // 启动动态主题
         DynamicColors.applyToActivitiesIfAvailable(this.getApplication());
